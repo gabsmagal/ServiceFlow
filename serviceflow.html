@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ServiceFlow — Built for Canadian Service Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #141210;
+    --paper: #F8F5EF;
+    --cream: #EEE9DF;
+    --red: #C0321A;
+    --green: #163823;
+    --green-mid: #25694A;
+    --green-bright: #3DA874;
+    --muted: #7A7265;
+    --border: #DDD8CC;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2rem;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem; color: var(--ink); letter-spacing: -0.03em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-mark {
+    width: 28px; height: 28px; background: var(--red);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 12px; height: 12px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; }
+  .nav-btn {
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+    background: var(--ink); color: var(--paper);
+    padding: 0.55rem 1.25rem; border-radius: 2rem; border: none;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-btn:hover { background: var(--red); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 4rem;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.73rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green-mid); background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.9rem; border-radius: 2rem; margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-bright); }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 1.5rem; max-width: 720px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--red);
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 1.8vw, 1.15rem); color: var(--muted);
+    line-height: 1.75; max-width: 520px; font-weight: 300;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-main {
+    background: var(--red); color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
+    padding: 1rem 2.5rem; border-radius: 0.4rem; border: none; cursor: pointer;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-main:hover { background: #A0280F; transform: translateY(-2px); }
+  .hero-note { font-size: 0.78rem; color: var(--muted); }
+  .hero-note span { color: var(--green-mid); font-weight: 500; }
+
+  /* ── PROBLEM ── */
+  .section {
+    padding: 5rem 2rem;
+    max-width: 1000px; margin: 0 auto;
+  }
+  .eyebrow {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em;
+    line-height: 1.1; color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--muted); line-height: 1.7;
+    max-width: 480px; font-weight: 300; margin-bottom: 3rem;
+  }
+
+  .problem-list { display: flex; flex-direction: column; gap: 1px; }
+  .problem-item {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.5rem 0; border-top: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .problem-item:last-child { border-bottom: 1px solid var(--border); }
+  .p-num {
+    font-family: 'Instrument Serif', serif; font-size: 1.1rem;
+    color: var(--border); min-width: 28px; padding-top: 2px;
+  }
+  .p-content h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .p-content p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── SOLUTION ── */
+  .solution-section {
+    background: var(--green);
+    padding: 5rem 2rem;
+  }
+  .solution-inner {
+    max-width: 1000px; margin: 0 auto;
+  }
+  .solution-section .eyebrow { color: var(--green-bright); }
+  .solution-section .section-title { color: #F8F5EF; }
+  .solution-section .section-sub { color: rgba(255,255,255,0.5); max-width: 480px; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.8rem; overflow: hidden;
+  }
+  .feat {
+    background: var(--green);
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+  .feat:hover { background: rgba(255,255,255,0.04); }
+  .feat-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(61,168,116,0.15); border: 1px solid rgba(61,168,116,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .feat-icon svg { width: 16px; height: 16px; stroke: var(--green-bright); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .feat h3 { font-size: 0.95rem; font-weight: 500; color: #F8F5EF; margin-bottom: 0.4rem; }
+  .feat p { font-size: 0.83rem; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
+
+  
+  
+  
+  
+  
+  
+  
+
+  /* ── BETA CTA ── */
+  .cta-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+  }
+  .cta-section .section-title { margin: 0 auto 1rem; max-width: 540px; }
+  .cta-section p { font-size: 1rem; color: var(--muted); max-width: 440px; margin: 0 auto 2.5rem; line-height: 1.7; font-weight: 300; }
+
+  .form-wrap {
+    display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto;
+  }
+  .form-wrap input {
+    flex: 1; min-width: 220px; padding: 0.85rem 1.2rem;
+    border: 1px solid var(--border); border-radius: 0.4rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    background: #fff; color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-wrap input:focus { border-color: var(--ink); }
+  .form-wrap input::placeholder { color: #B0A89A; }
+  .form-wrap button {
+    background: var(--red); color: #fff; border: none;
+    padding: 0.85rem 1.75rem; border-radius: 0.4rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .form-wrap button:hover { background: #A0280F; transform: translateY(-1px); }
+
+  .cta-note { margin-top: 1rem; font-size: 0.78rem; color: var(--muted); }
+  .success {
+    display: none; margin-top: 1.5rem;
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 0.5rem; padding: 1rem 1.5rem;
+    font-size: 0.9rem; color: var(--green-mid); font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); padding: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Instrument Serif', serif; font-size: 1.1rem; color: #F8F5EF; }
+  footer span { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.6rem; }
+    nav { padding: 1rem 1.25rem; }
+    .section { padding: 4rem 1.25rem; }
+    .solution-section { padding: 4rem 1.25rem; }
+  }
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+
+  @media (max-width: 640px) {
+    
+    
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+    </div>
+    ServiceFlow
+  </div>
+  <a href="#beta" class="nav-btn">Sign Up for Beta</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="badge-dot"></span> Now accepting beta testers — Canada</div>
+  <h1>Stop running your business on <em>WhatsApp</em></h1>
+  <p>ServiceFlow gives Canadian small service businesses one simple platform to manage their team, clients, and invoicing — without the chaos.</p>
+  <div class="hero-cta">
+    <a href="#beta" class="btn-main">Sign Up for Beta Test</a>
+    <p class="hero-note"><span>Free</span> during beta &nbsp;·&nbsp; No credit card required</p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <span class="eyebrow reveal">The problem</span>
+  <h2 class="section-title reveal">Sound familiar?</h2>
+  <p class="section-sub reveal">Most small service businesses in Canada are running on tools that were never meant to work together.</p>
+
+  <div class="problem-list">
+    <div class="problem-item reveal">
+      <div class="p-num">01</div>
+      <div class="p-content">
+        <h3>Everything lives in WhatsApp</h3>
+        <p>Job instructions buried in group chats. Employees miss updates. Clients texting at midnight. No structure, no record.</p>
+      </div>
+    </div>
+    <div class="problem-item reveal">
+      <div class="p-num">02</div>
+      <div class="p-content">
+        <h3>Admin eats your day</h3>
+        <p>Scheduling in one spreadsheet, invoices in another, client notes on paper. 3 to 4 hours every day on tasks that should take minutes.</p>
+      </div>
+    </div>
+    <div class="problem-item reveal">
+      <div class="p-num">03</div>
+      <div class="p-content">
+        <h3>Inconsistent service costs you clients</h3>
+        <p>Without clear instructions, employees improvise. Clients notice. One bad visit can cost you a recurring contract worth thousands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution-section">
+  <div class="solution-inner">
+    <span class="eyebrow reveal">The platform</span>
+    <h2 class="section-title reveal">One app. Everything connected.</h2>
+    <p class="section-sub reveal">Built specifically for Canadian service teams with 1 to 25 employees.</p>
+
+    <div class="features-grid">
+      <div class="feat reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Smart scheduling</h3>
+        <p>Drag-and-drop calendar. Assign jobs by availability. Everyone knows where to be and when.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><polyline points="9,15 11,17 15,13"/></svg>
+        </div>
+        <h3>Employee task app</h3>
+        <p>Job checklists, client notes, and pre-shift notifications delivered to your team's phone before every job.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        </div>
+        <h3>Auto-invoicing</h3>
+        <p>Invoice generated and sent the moment a job is marked complete. Get paid faster with one-click online payment.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.27 18a20 20 0 0 1-5-5A19.79 19.79 0 0 1 3.09 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.91 9.91a16 16 0 0 0 6.19 6.19l.83-.83a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Client communication</h3>
+        <p>Automated booking confirmations, reminders, and post-service summaries. No more chasing or being chased.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        </div>
+        <h3>Business dashboard</h3>
+        <p>Revenue, jobs completed, and team performance — visible at a glance from your phone.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>QuickBooks sync</h3>
+        <p>All invoices and expenses flow directly to QuickBooks. Zero double-entry, ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- BETA CTA -->
+<section class="cta-section" id="beta">
+  <h2 class="section-title reveal">Sign up for our beta test</h2>
+  <p class="reveal">We're onboarding our first 100 Canadian small service businesses. Get full access free and help shape the product.</p>
+  <div class="form-wrap reveal">
+    <input type="email" id="email" placeholder="Enter your business email" />
+    <button onclick="submit()">Sign Up for Beta</button>
+  </div>
+  <div class="success" id="success">🎉 You're on the list! We'll be in touch within 48 hours.</div>
+  <p class="cta-note reveal">No credit card required &nbsp;·&nbsp; Free for the full beta period &nbsp;·&nbsp; Ontario launch</p>
+</section>
+
+<footer>
+  <div class="footer-logo">ServiceFlow</div>
+  <span>Built for Canadian small service businesses &nbsp;·&nbsp; Toronto, ON</span>
+  <span>© 2025 ServiceFlow</span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  function submit() {
+    const e = document.getElementById('email').value.trim();
+    if (!e || !e.includes('@')) {
+      document.getElementById('email').style.borderColor = '#C0321A';
+      document.getElementById('email').placeholder = 'Please enter a valid email';
+      return;
+    }
+    document.querySelector('.form-wrap').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  }
+  document.getElementById('email').addEventListener('keydown', e => { if(e.key==='Enter') submit(); });
+</script>
+</body>
+</html>
+
